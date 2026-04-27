@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recomendador IA - Filmes e Séries</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; background: #111; color: #fff; }
+    textarea, button, input { font-size: 1rem; }
+    textarea { width: 100%; min-height: 100px; margin: 0.5rem 0 1rem; }
+    button { padding: 0.7rem 1rem; background: #2e7df6; color: #fff; border: 0; border-radius: 8px; cursor: pointer; }
+    .card { background: #1f1f1f; border-radius: 12px; padding: 1rem; margin: 0.7rem 0; }
+    .meta { color: #aaa; font-size: 0.9rem; }
+    .budget { background: #1f2f1f; border-left: 4px solid #29bf6f; padding: 0.8rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Recomendador IA (Azure)</h1>
+  <p>Descreva o que você quer assistir e receba sugestões personalizadas.</p>
+
+  <div class="budget">
+    <strong>Meta de custo:</strong> R$ 100/mês.<br />
+    Dica: use deployment econômico (ex: GPT-4o-mini) e limite <code>max_tokens</code>.
+  </div>
+
+  <label for="prompt">O que você quer assistir hoje?</label>
+  <textarea id="prompt" placeholder="Ex: Quero uma série curta de suspense, sem violência pesada, para ver com minha esposa."></textarea>
+
+  <label for="maxResults">Quantidade de recomendações</label>
+  <input id="maxResults" type="number" min="1" max="10" value="5" />
+  <br /><br />
+
+  <button id="recommendBtn">Gerar recomendações</button>
+
+  <h2>Resultado</h2>
+  <p id="strategy"></p>
+  <div id="results"></div>
+
+  <script>
+    const apiBase = 'http://localhost:8000';
+
+    document.getElementById('recommendBtn').addEventListener('click', async () => {
+      const prompt = document.getElementById('prompt').value.trim();
+      const maxResults = Number(document.getElementById('maxResults').value || 5);
+      const resultsEl = document.getElementById('results');
+      const strategyEl = document.getElementById('strategy');
+      resultsEl.innerHTML = '';
+      strategyEl.textContent = '';
+
+      if (!prompt) {
+        alert('Digite sua preferência.');
+        return;
+      }
+
+      try {
+        const resp = await fetch(`${apiBase}/recommend`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt, max_results: maxResults })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.text();
+          throw new Error(err);
+        }
+
+        const data = await resp.json();
+        strategyEl.textContent = `Estratégia usada: ${data.strategy}`;
+
+        data.recommendations.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.innerHTML = `
+            <h3>${item.title}</h3>
+            <div class="meta">${item.type} • ${item.year} • ${item.genres.join(', ')}</div>
+            <p>${item.synopsis}</p>
+          `;
+          resultsEl.appendChild(div);
+        });
+      } catch (e) {
+        resultsEl.innerHTML = `<div class="card">Erro ao buscar recomendações: ${e.message}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>
