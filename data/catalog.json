@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Dark",
+    "type": "Série",
+    "year": 2017,
+    "genres": ["Suspense", "Ficção Científica", "Drama"],
+    "synopsis": "Mistérios temporais em uma cidade alemã após o desaparecimento de crianças.",
+    "keywords": ["mistério", "tempo", "sombria"],
+    "family_friendly": false
+  },
+  {
+    "title": "Brooklyn Nine-Nine",
+    "type": "Série",
+    "year": 2013,
+    "genres": ["Comédia", "Policial"],
+    "synopsis": "Detetives excêntricos vivem casos e confusões em uma delegacia de Nova York.",
+    "keywords": ["leve", "engraçada", "curta"],
+    "family_friendly": true
+  },
+  {
+    "title": "Interestelar",
+    "type": "Filme",
+    "year": 2014,
+    "genres": ["Ficção Científica", "Drama"],
+    "synopsis": "Uma equipe viaja pelo espaço em busca de um novo lar para a humanidade.",
+    "keywords": ["espaço", "emocionante", "reflexivo"],
+    "family_friendly": true
+  },
+  {
+    "title": "A Origem",
+    "type": "Filme",
+    "year": 2010,
+    "genres": ["Ação", "Suspense", "Ficção Científica"],
+    "synopsis": "Um ladrão invade sonhos para roubar segredos corporativos.",
+    "keywords": ["inteligente", "ação", "sonhos"],
+    "family_friendly": false
+  },
+  {
+    "title": "Stranger Things",
+    "type": "Série",
+    "year": 2016,
+    "genres": ["Aventura", "Suspense", "Ficção Científica"],
+    "synopsis": "Crianças enfrentam fenômenos sobrenaturais e experimentos secretos nos anos 80.",
+    "keywords": ["nostalgia", "amizade", "mistério"],
+    "family_friendly": true
+  },
+  {
+    "title": "The Good Place",
+    "type": "Série",
+    "year": 2016,
+    "genres": ["Comédia", "Fantasia"],
+    "synopsis": "Após morrer, uma mulher tenta merecer ficar no lugar bom do além.",
+    "keywords": ["leve", "filosófico", "divertido"],
+    "family_friendly": true
+  },
+  {
+    "title": "Parasita",
+    "type": "Filme",
+    "year": 2019,
+    "genres": ["Drama", "Suspense"],
+    "synopsis": "Uma família pobre se infiltra na casa de uma família rica com consequências inesperadas.",
+    "keywords": ["crítica social", "tenso", "premiado"],
+    "family_friendly": false
+  }
+]
